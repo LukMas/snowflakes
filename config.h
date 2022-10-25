@@ -32,20 +32,21 @@
 // > shift/a > x then < shift/a < x produces ax - if a lot of times a shifted key is missed, REMOVE!!!!
 // #define IGNORE_MOD_TAP_INTERRUPT
 // use the following two to tune the way the tap or hold are handled
-// @define PERMISSIVE_HOLD
+#define PERMISSIVE_HOLD
 // #define HOLD_ON_OTHER_KEY_PRESS
+#define TAPPING_TERM 150
 
 // RGB matrix
 #define RGB_DISABLE_WHEN_USB_SUSPENDED // turn off effects when suspended
 
 // enables the heatmap effect
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
-#define ENABLE_RGB_MATRIX_TYPING_HEATMAP
+// #define ENABLE_RGB_MATRIX_TYPING_HEATMAP
 
 // enables the reative matrix
 #define RGB_MATRIX_KEYPRESSES
 #define RGB_MATRIX_SOLID_REACTIVE_SIMPLE
-#define RGB_MATRIX_SOLID_REACTIVE_GRADIENT_MODE
-#define RGB_MATRIX_SOLID_REACTIVE      // Static single hue, pulses keys hit to shifted hue then fades to current hue
-#define RGB_MATRIX_SOLID_REACTIVE_WIDE       // Hue & value pulse near a single key hit then fades value out
-#define RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE  // Hue & value pulse near multiple key hits then fades value out
+// #define RGB_MATRIX_SOLID_REACTIVE_GRADIENT_MODE
+// #define RGB_MATRIX_SOLID_REACTIVE      // Static single hue, pulses keys hit to shifted hue then fades to current hue
+// #define RGB_MATRIX_SOLID_REACTIVE_WIDE       // Hue & value pulse near a single key hit then fades value out
+// #define RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE  // Hue & value pulse near multiple key hits then fades value out
