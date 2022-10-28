@@ -38,7 +38,7 @@ enum layers {
 #define RCL_RPRT    KC_RCPC
 
 // left alt when held, left and right brackets when tap - the same ALT, so on the other layers doesn't mess with the position of the other modifiers
-#define RALT_LBK    ALGR_T(KC_LBRC)
+#define LALT_LBK    LALT_T(KC_LBRC)
 #define RALT_RBK    ALGR_T(KC_RBRC)
 
 // left and right shift when held, left and right curly brackets when tap
@@ -46,15 +46,11 @@ enum layers {
 #define RSFT_RCB    RSFT_T(KC_RCBR)
 
 // right alt when held, space and enter when tap - the same ALT, so on the other layers doesn't mess with the position of the other modifiers
-#define LALT_SPC    LALT_T(KC_SPC)
-#define LALT_ENT    LALT_T(KC_ENT)
+// #define LALT_SPC    LALT_T(KC_SPC)
+// #define LALT_ENT    LALT_T(KC_ENT)
 
 #define ESC_GUI     GUI_T(KC_ESC)
 
-
-// Note: LAlt/Enter (ALT_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
-// The notation `mod/tap` denotes a key that activates the modifier `mod` when held down, and
-// produces the key `tap` when tapped (i.e. pressed and released).
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -68,36 +64,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *|---------+------+------+-------+------+------+-------------.  ,-------------+------+------+-------+------+------+---------|
  *| Shift { |   Z  |   X  |   C   |   V  |   B  | = +  | App  |  | Ins  | - _  |   N  |   M  |  , <  | . >  | / ?  | Shift } |
  *`-----------------------+-------+------+------+------+------|  |------+------+------+------+-------+-----------------------'
- *                        | RAlt  |MEDIA | FUNC | Space| DEL  |  | Bcksp| Enter| NUMB |MOUSE | RAlt  |
- *                        |   [   |      |      | LAlt |      |  |      | LAlt |      |      |   ]   |
+ *                        | LAlt  |MEDIA | FUNC | Space| DEL  |  | Bcksp| Enter| NUMB |MOUSE | RAlt  |
+ *                        |   [   |      |      |      |      |  |      |      |      |      |   ]   |
  *                         -----------------------------------    -----------------------------------
  */
     [_QWERTY] = LAYOUT(
-     KC_TAB   ,KC_Q    ,KC_W     ,KC_E     ,KC_R     ,KC_T                       ,                       KC_Y,      KC_U,     KC_I,    KC_O,    KC_P,  ESC_GUI,
-     LCL_LPRT, KC_A    ,KC_S     ,KC_D     ,KC_F     ,KC_G                       ,                       KC_H,      KC_J,     KC_K,    KC_L, KC_SCLN, RCL_RPRT,
-     LSFT_LCB ,KC_Z    ,KC_X     ,KC_C     ,KC_V     ,KC_B    ,KC_EQL  ,KC_APP   ,   KC_INS,  KC_MINS,   KC_N,      KC_M,  KC_COMM,  KC_DOT, KC_SLSH, RSFT_RCB,
-                                  RALT_LBK ,GO_MEDIA ,GO_FUNCs,LALT_SPC,KC_DEL   ,   KC_BSPC,LALT_ENT, GO_NUMBs, GO_MOUSE,RALT_RBK
+     KC_TAB   ,KC_Q    ,KC_W     ,KC_E     ,KC_R     ,KC_T                      ,                        KC_Y,     KC_U,     KC_I,    KC_O,    KC_P,  ESC_GUI,
+     LCL_LPRT, KC_A    ,KC_S     ,KC_D     ,KC_F     ,KC_G                      ,                        KC_H,     KC_J,     KC_K,    KC_L, KC_SCLN, RCL_RPRT,
+     LSFT_LCB ,KC_Z    ,KC_X     ,KC_C     ,KC_V     ,KC_B    ,KC_EQL ,KC_APP   ,   KC_INS,  KC_MINS,    KC_N,     KC_M,  KC_COMM,  KC_DOT, KC_SLSH, RSFT_RCB,
+                                  LALT_LBK ,GO_MEDIA ,GO_FUNCs,KC_SPC ,KC_DEL   ,   KC_BSPC,  KC_ENT,GO_NUMBs, GO_MOUSE, RALT_RBK
     ),
 
 /*
  * Base Layer: _NUMBERs
  *
  * ,---------------------------------------------.                              ,---------------------------------------------.
- * |  Tab    |  NO  |  $   |   #   | ` ~  |  |   |                              |  &   | ' "  |   *   |   %  |  NO  | Esc Gui |
+ * |   Tab   |  NO  |  $   |   #   | ` ~  |  |   |                              |  &   | ' "  |   *   |   %  |  NO  | Esc Gui |
  * |---------+------+------+-------+------+------|                              |------+------+-------+------+------+---------|
- * | Ctrl (  | 1 !  | 2 @  |  3 #  | 4 $  | 5 %  |                              | 6 ^  | 7 &  |  8 *  | 9 (  | 0 )  | Ctrl )  |
+ * | Ctrl    | 1 !  | 2 @  |  3 #  | 4 $  | 5 %  |                              | 6 ^  | 7 &  |  8 *  | 9 (  | 0 )  | Ctrl    |
  * |---------+------+------+-------+------+------+-------------.  ,-------------+------+------+-------+------+------+---------|
- * | Shift { |  NO  |  UP  |  NO   | DOWN |  NO  | = +  | \ |  |  |CapsLk| - _  |  NO  | LEFT |  NO   |RIGHT |  NO  | Shift } |
+ * | Shift   |  NO  |  UP  |  NO   | DOWN |  NO  | = +  | \ |  |  |  NO  | - _  |  NO  | LEFT |  NO   |RIGHT |  NO  | Shift   |
  * `-----------------------+-------+------+------+------+------|  |------+------+------+------+-------+-----------------------'
- *                         | RAlt  | Ctrl |Shift |Space |  NO  |  |  NO  |  NO  |(NUMB)|  NO  | RAlt  |
- *                         |   [   |      |      |LAlt  |      |  |      |      |      |      |   ]   |
+ *                         | LAlt  |  NO  | Alt  |Shift | Ctrl |  |  NO  |  NO  |(NUMB)|  NO  | RAlt  |
+ *                         |   [   |      |      |      |      |  |      |      |      |      |   ]   |
  *                          -----------------------------------    -----------------------------------
 */
     [_NUMBERs] = LAYOUT(
      KC_TRNS  ,KC_NO   ,KC_DLR   ,KC_HASH  ,KC_GRV  ,KC_PIPE                   ,                  KC_AMPR,  KC_QUOT,  KC_ASTR, KC_PERC,   KC_NO,  KC_TRNS,
-     KC_TRNS  ,KC_1    ,KC_2     ,KC_3     ,KC_4    ,KC_5                      ,                     KC_6,     KC_7,     KC_8,    KC_9,    KC_0,  KC_TRNS,
-     KC_TRNS  ,KC_NO   ,KC_UP    ,KC_NO    ,KC_DOWN ,KC_NO   ,KC_EQL  ,KC_BSLS , KC_CAPS, KC_MINS,  KC_NO,  KC_LEFT,    KC_NO,KC_RIGHT,   KC_NO,  KC_TRNS,
-                                  KC_TRNS  ,KC_LCTL ,KC_LSFT ,KC_LALT ,KC_NO   ,   KC_NO,   KC_NO,KC_TRNS,    KC_NO,  KC_TRNS
+     KC_LCTL  ,KC_1    ,KC_2     ,KC_3     ,KC_4    ,KC_5                      ,                     KC_6,     KC_7,     KC_8,    KC_9,    KC_0,  KC_RCTL,
+     KC_LSFT  ,KC_NO   ,KC_UP    ,KC_NO    ,KC_DOWN ,KC_NO   ,KC_EQL  ,KC_BSLS ,   KC_NO, KC_MINS,  KC_NO,  KC_LEFT,    KC_NO,KC_RIGHT,   KC_NO,  KC_RSFT,
+                                  KC_LALT  ,KC_NO   ,KC_LALT ,KC_LSFT ,KC_LCTL ,   KC_NO,   KC_NO,KC_TRNS,    KC_NO,  KC_RALT
     ),
 
 /*
@@ -106,61 +102,61 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,---------------------------------------------.                              ,---------------------------------------------.e
  * |  Tab    |  NO  |  F9  |  F10  |  F12 |  NO  |                              |  NO  |  F4  |  F5   |  F6  |  NO  | Esc Gui |
  * |---------+------+------+-------+------+------|                              |------+------+-------+------+------+---------|
- * | Ctrl (  |  NO  |  F7  |  F8   |  F9  | PgUp |                              | HOME |  F1  |  F2   |  F3  |  NO  | Ctrl )  |
+ * | Ctrl    |  NO  |  F7  |  F8   |  F9  | PgUp |                              | HOME |  F1  |  F2   |  F3  |  NO  | Ctrl    |
  * |---------+------+------+-------+------+------+-------------.  ,-------------+------+------+-------+------+------+---------|
- * | Shift { |  NO  |  UP  |  NO   |  DW  | PgDw |  NO  |  NO  |  |  NO  |  NO  | END  | LEFT |  NO   |RIGHT |  NO  | Shift } |
+ * | Shift   |  NO  |  UP  |  NO   |  DW  | PgDw |  NO  |NumLok|  |CapLok|  NO  | END  | LEFT |  NO   |RIGHT |  NO  | Shift   |
  * `-----------------------+-------+------+------+------+------|  |------+------+------+------+-------+-----------------------'
- *                         |  RAlt |  NO  |(FUNC)|  NO  |  NO  |  |  NO  | LAlt |Shift | Ctrl | RAlt  |
+ *                         |  LAlt |  NO  |(FUNC)|  NO  |  NO  |  | Ctrl |Shift |  Alt |  NO  | RAlt  |
  *                         |   [   |      |      |      |      |  |      |      |      |      |   ]   |
  *                          -----------------------------------    -----------------------------------
 */
     [_FUNCTIONs] = LAYOUT(
-     KC_TRNS  ,KC_NO   ,KC_F10   ,KC_F11   ,KC_F12  ,KC_NO                     ,                      KC_NO,    KC_F4,    KC_F5,   KC_F6,   KC_NO,  KC_TRNS,
-     KC_TRNS  ,KC_NO   ,KC_F7    ,KC_F8    ,KC_F9   ,KC_PGUP                   ,                    KC_HOME,    KC_F1,    KC_F2,   KC_F3,   KC_NO,  KC_TRNS,
-     KC_TRNS  ,KC_NO   ,KC_UP    ,KC_NO    ,KC_DOWN ,KC_PGDN ,KC_NO   ,KC_NO   ,   KC_NO,    KC_NO,  KC_END,  KC_LEFT,    KC_NO, KC_RGHT,   KC_NO,  KC_TRNS,
-                                  KC_TRNS  ,KC_NO   ,KC_TRNS ,KC_NO   ,KC_NO   ,   KC_NO,  KC_LALT, KC_RSFT,  KC_RCTL,    KC_TRNS
+     KC_TRNS  ,KC_NO   ,KC_F10   ,KC_F11   ,KC_F12  ,KC_NO                     ,                     KC_NO,    KC_F4,    KC_F5,   KC_F6,   KC_NO,  KC_TRNS,
+     KC_LCTL  ,KC_NO   ,KC_F7    ,KC_F8    ,KC_F9   ,KC_PGUP                   ,                   KC_HOME,    KC_F1,    KC_F2,   KC_F3,   KC_NO,  KC_RCTL,
+     KC_LSFT  ,KC_NO   ,KC_UP    ,KC_NO    ,KC_DOWN ,KC_PGDN ,KC_NO   ,KC_NUM  , KC_CAPS,   KC_NO,  KC_END,  KC_LEFT,    KC_NO, KC_RGHT,   KC_NO,  KC_RSFT,
+                                  KC_LALT  ,KC_NO   ,KC_TRNS ,KC_NO   ,KC_NO   , KC_LCTL, KC_LSFT, KC_LALT,    KC_NO,  KC_RALT
     ),
 
 /*
  * Base Layer: _MEDIA
  *
  * ,----------------------------------------------.                              ,---------------------------------------------.
- * |   SLEEP |  NO  |  NO  | VOLU  |  NO   |PAUSE |                              |RGB_F |  H_I |  S_I  | B_I  |  NO  |POWER_OFF|
+ * | WDW_MLS |  NO  |  NO  | VOLU  |  NO   |PAUSE |                              |RGB_F |  H_I |  S_I  | B_I  |  NO  | WDW_MRS |
  * |---------+------+------+-------+-------+------|                              |------+------+-------+------+------+---------|
- * |   NO    |  NO  | PREV | VOLD  | NEXT  | STOP |                              |RGB_R |  H_D |  S_D  | B_D  |  NO  |   NO    |
+ * | WDW_MLW |  NO  | PREV | VOLD  | NEXT  | STOP |                              |RGB_R |  H_D |  S_D  | B_D  |  NO  | WDW_MRW |
  * |---------+------+------+-------+-------+------+-------------.  ,-------------+------+------+-------+------+------+---------|
- * |   NO    |  NO  |  NO  | MUTE  |  NO   |LAUNCH|  NO  |  NO  |  |  NO  |  NO  |  NO  |  NO  |  NO   |  NO  |  NO  |   NO    |
+ * | GO_LWSP |  NO  |  NO  | MUTE  |  NO   |LAUNCH|  NO  |  NO  |  |  NO  |  NO  |  NO  |  NO  |  NO   |  NO  |  NO  | GO_WSP  |
  * `-----------------------+-------+-------+------+------+------|  |------+------+------+------+-------+-----------------------'
- *                         |   NO  |(MEDIA)|  NO  |  NO  | ---- |  |  NO  |RGB_T |  NO  |  NO  |  NO   |
+ *                         |   NO  |(MEDIA)|  NO  |  NO  | ---- |  |  NO  |RGB_T | LOCK |SLEEP |PWR_OFF|
  *                         |       |       |      |      |      |  |      |      |      |      |       |
  *                          ------------------------------------    -----------------------------------
 */
     [_MEDIA] = LAYOUT(
-     KC_SLEP ,KC_NO   ,KC_NO    ,KC_VOLU ,KC_NO   ,KC_MPLY                   ,                    RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI,   KC_NO, KC_PWR,
+     KC_NO   ,KC_NO   ,KC_NO    ,KC_VOLU ,KC_NO   ,KC_MPLY                   ,                    RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI,   KC_NO,  KC_NO,
      KC_NO   ,KC_NO   ,KC_MPRV  ,KC_VOLD ,KC_MNXT ,KC_MSTP                   ,                   RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD,   KC_NO,  KC_NO,
      KC_NO   ,KC_NO   ,KC_NO    ,KC_MUTE ,KC_NO   ,KC_MSEL ,KC_NO   ,KC_NO   ,   KC_NO,    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,
-                                 KC_NO   ,KC_TRNS ,KC_NO   ,KC_NO   ,KC_NO   ,   KC_NO,  RGB_TOG,   KC_NO,   KC_NO,   KC_NO
+                                 KC_NO   ,KC_TRNS ,KC_NO   ,KC_NO   ,KC_NO   ,   KC_NO,  RGB_TOG,   KC_NO, KC_SLEP,  KC_PWR
     ),
 
 /*
  * Base Layer: _MOUSE
  *
  * ,---------------------------------------------.                              ,----------------------------------------------.
- * |  Tab    |  NO  |  NO  |  M_U  |  NO  |ACL 1 |                              |  NO  |  NO   | WHL U |  NO  |  NO  | Esc Gui |
+ * |   NO    |  NO  |  NO  |  M_U  |  NO  |ACL 1 |                              |  NO  |  NO   | WHL U |  NO  |  NO  |   NO    |
  * |---------+------+------+-------+------+------|                              |------+-------+-------+------+------+---------|
- * | Ctrl (  |  NO  | MS_L |  M_D  | M_RG |ACL 2 |                              |  NO  |WHL L  | WHL D |WHL R |  NO  | Ctrl )  |
+ * |   NO    |  NO  | MS_L |  M_D  | M_RG |ACL 2 |                              |  NO  |WHL L  | WHL D |WHL R |  NO  |   NO    |
  * |---------+------+------+-------+------+------+-------------.  ,-------------+------+-------+-------+------+------+---------|
- * | Shift { |  NO  |  UP  |  NO   |  NO  |ACL 3 |  NO  |  NO  |  |  NO  |  NO  |  NO  |  NO   |  NO   |  NO  |  NO  | Shift } |
+ * |   NO    |  NO  |  UP  |  NO   |  NO  |ACL 3 |  NO  |  NO  |  |  NO  |  NO  |  NO  |  NO   |  NO   |  NO  |  NO  |   NO    |
  * `-----------------------+-------+------+------+------+------|  |------+------+------+-------+-------+-----------------------'
  *                         |   NO  | BTN1 | BTN2 | BTN3 |  NO  |  |  NO  |  NO  |  NO  |(MOUSE)|  NO   |
  *                         |       |      |      |      |      |  |      |      |      |       |       |
  *                          -----------------------------------    ------------------------------------
 */
     [_MOUSE] = LAYOUT(
-     KC_TRNS  ,KC_NO   ,KC_NO   ,KC_MS_U  ,KC_NO    ,KC_ACL0                   ,                      KC_NO,    KC_NO,  KC_WH_U,   KC_NO,   KC_NO,  KC_TRNS,
-     KC_TRNS  ,KC_NO   ,KC_MS_L ,KC_MS_D  ,KC_MS_R  ,KC_ACL1                   ,                      KC_NO,  KC_WH_L,  KC_WH_D, KC_WH_R,   KC_NO,  KC_TRNS,
-     KC_TRNS  ,KC_NO   ,KC_NO   ,KC_NO    ,KC_NO    ,KC_ACL2 ,KC_NO   ,KC_NO   ,   KC_NO,    KC_NO,   KC_NO,    KC_NO,    KC_NO,   KC_NO,   KC_NO,  KC_TRNS,
-                                 KC_NO    ,KC_BTN3  ,KC_BTN2 ,KC_BTN1 ,KC_NO   ,   KC_NO,    KC_NO,   KC_NO,  KC_TRNS,    KC_NO
+     KC_NO  ,KC_NO   ,KC_NO   ,KC_MS_U  ,KC_NO    ,KC_ACL0                   ,                      KC_NO,    KC_NO,  KC_WH_U,   KC_NO,   KC_NO,  KC_NO,
+     KC_NO  ,KC_NO   ,KC_MS_L ,KC_MS_D  ,KC_MS_R  ,KC_ACL1                   ,                      KC_NO,  KC_WH_L,  KC_WH_D, KC_WH_R,   KC_NO,  KC_NO,
+     KC_NO  ,KC_NO   ,KC_NO   ,KC_NO    ,KC_NO    ,KC_ACL2 ,KC_NO   ,KC_NO   ,   KC_NO,    KC_NO,   KC_NO,    KC_NO,    KC_NO,   KC_NO,   KC_NO,  KC_NO,
+                               KC_NO    ,KC_BTN1  ,KC_BTN2 ,KC_BTN3 ,KC_NO   ,   KC_NO,    KC_NO,   KC_NO,  KC_TRNS,    KC_NO
     ),
 // /*
 //  * Layer template
@@ -272,12 +268,6 @@ bool oled_task_user(void) {
         };
         // clang-format on
         oled_write_raw_P(kyria_logo, sizeof(kyria_logo));
-
-        #ifdef WPM_ENABLE
-            sprintf(wpm_str, "WPM: %03d", get_current_wpm());
-            oled_write_P(PSTR("\n"), false);
-            oled_write(wpm_str, false);
-        #endif
     }
     return false;
 }
