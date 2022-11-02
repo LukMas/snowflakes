@@ -51,6 +51,15 @@ enum layers {
 
 #define ESC_GUI     GUI_T(KC_ESC)
 
+// window and screen movement
+#define WDW_MLS HYPR(KC_LEFT)
+#define WDW_MLW MEH(KC_LEFT)
+#define GO_LWSP C(A(KC_LEFT))
+#define WDW_MRS HYPR(KC_RGHT)
+#define WDW_MRW MEH(KC_RGHT)
+#define GO_RWSP C(A(KC_RGHT))
+
+#define LOCK G(KC_L)
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -125,17 +134,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |---------+------+------+-------+-------+------|                              |------+------+-------+------+------+---------|
  * | WDW_MLW |  NO  | PREV | VOLD  | NEXT  | STOP |                              |RGB_R |  H_D |  S_D  | B_D  |  NO  | WDW_MRW |
  * |---------+------+------+-------+-------+------+-------------.  ,-------------+------+------+-------+------+------+---------|
- * | GO_LWSP |  NO  |  NO  | MUTE  |  NO   |LAUNCH|  NO  |  NO  |  |  NO  |  NO  |  NO  |  NO  |  NO   |  NO  |  NO  | GO_WSP  |
+ * | GO_LWSP |  NO  |  NO  | MUTE  |  NO   |LAUNCH|  NO  |  NO  |  |  NO  |  NO  |  NO  |  NO  |  NO   |  NO  |  NO  | GO_RWSP |
  * `-----------------------+-------+-------+------+------+------|  |------+------+------+------+-------+-----------------------'
  *                         |   NO  |(MEDIA)|  NO  |  NO  | ---- |  |  NO  |RGB_T | LOCK |SLEEP |PWR_OFF|
  *                         |       |       |      |      |      |  |      |      |      |      |       |
  *                          ------------------------------------    -----------------------------------
 */
     [_MEDIA] = LAYOUT(
-     KC_NO   ,KC_NO   ,KC_NO    ,KC_VOLU ,KC_NO   ,KC_MPLY                   ,                    RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI,   KC_NO,  KC_NO,
-     KC_NO   ,KC_NO   ,KC_MPRV  ,KC_VOLD ,KC_MNXT ,KC_MSTP                   ,                   RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD,   KC_NO,  KC_NO,
-     KC_NO   ,KC_NO   ,KC_NO    ,KC_MUTE ,KC_NO   ,KC_MSEL ,KC_NO   ,KC_NO   ,   KC_NO,    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,
-                                 KC_NO   ,KC_TRNS ,KC_NO   ,KC_NO   ,KC_NO   ,   KC_NO,  RGB_TOG,   KC_NO, KC_SLEP,  KC_PWR
+     WDW_MLS ,KC_NO   ,KC_NO    ,KC_VOLU ,KC_NO   ,KC_MPLY                   ,                    RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI,   KC_NO, WDW_MRS,
+     WDW_MLW ,KC_NO   ,KC_MPRV  ,KC_VOLD ,KC_MNXT ,KC_MSTP                   ,                   RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD,   KC_NO, WDW_MRW,
+     GO_LWSP ,KC_NO   ,KC_NO    ,KC_MUTE ,KC_NO   ,KC_MSEL ,KC_NO   ,KC_NO   ,   KC_NO,    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, GO_RWSP,
+                                 KC_NO   ,KC_TRNS ,KC_NO   ,KC_NO   ,KC_NO   ,   KC_NO,  RGB_TOG,    LOCK, KC_SLEP,  KC_PWR
     ),
 
 /*
@@ -254,6 +263,8 @@ bool oled_task_user(void) {
         // Write host Keyboard LED Status to OLEDs
         led_t led_usb_state = host_keyboard_led_state();
         oled_write_P(led_usb_state.num_lock    ? PSTR("NUMLCK ") : PSTR("       "), false);
+        oled_write_P(led_usb_state.caps_lock ? PSTR("CAPLCK ") : PSTR("       "), false);
+
     } else {
         // clang-format off
         static const char PROGMEM kyria_logo[] = {
