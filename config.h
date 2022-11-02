@@ -43,6 +43,11 @@
 #define ENABLE_RGB_MATRIX_TYPING_HEATMAP    // How hot is your WPM!
 #define ENABLE_RGB_MATRIX_DIGITAL_RAIN
 
+#define RGB_MATRIX_TYPING_HEATMAP_DECREASE_DELAY_MS 100
+#define RGB_MATRIX_TYPING_HEATMAP_SPREAD 100
+#define RGB_MATRIX_TYPING_HEATMAP_AREA_LIMIT 36
+
+
 // enables the reative matrix
 #define RGB_MATRIX_KEYPRESSES
 #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE   // Pulses keys hit to hue & value then fades value out
