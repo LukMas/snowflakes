@@ -52,12 +52,19 @@ enum layers {
 #define ESC_GUI     GUI_T(KC_ESC)
 
 // window and screen movement
-#define WDW_MLS HYPR(KC_LEFT)
-#define WDW_MLW MEH(KC_LEFT)
-#define GO_LWSP C(A(KC_LEFT))
-#define WDW_MRS HYPR(KC_RGHT)
-#define WDW_MRW MEH(KC_RGHT)
-#define GO_RWSP C(A(KC_RGHT))
+#define WDW_MLS HYPR(KC_LEFT) // move left screen
+#define WDW_MLW MEH(KC_LEFT)  // move left workspace
+#define GO_LWSP C(A(KC_LEFT)) // go left workspace
+#define WDW_MRS HYPR(KC_RGHT) // move right screen
+#define WDW_MRW MEH(KC_RGHT)  // move right workspace
+#define GO_RWSP C(A(KC_RGHT)) // to right workspace
+
+#define TL_T G(KC_UP)
+#define TL_B G(KC_DOWN)
+#define TL_L G(KC_LEFT)
+#define TL_R G(KC_RGHT)
+#define TL_MM G(KC_PGDN)
+#define TL_MX G(KC_PGUP)
 
 #define LOCK G(KC_L)
 
@@ -130,20 +137,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Base Layer: _MEDIA
  *
  * ,----------------------------------------------.                              ,---------------------------------------------.
- * | WDW_MLS |  NO  |  NO  | VOLU  |  NO   |PAUSE |                              |RGB_F |  H_I |  S_I  | B_I  |  NO  | WDW_MRS |
+ * | WDW_MLS |TL_MM |  NO  | VOLU  |  NO   |PAUSE |                              |RGB_F |  H_I |  S_I  | B_I  |TL_MX | WDW_MRS |
  * |---------+------+------+-------+-------+------|                              |------+------+-------+------+------+---------|
- * | WDW_MLW |  NO  | PREV | VOLD  | NEXT  | STOP |                              |RGB_R |  H_D |  S_D  | B_D  |  NO  | WDW_MRW |
+ * | WDW_MLW | TL_L | PREV | VOLD  | NEXT  | STOP |                              |RGB_R |  H_D |  S_D  | B_D  | TL_R | WDW_MRW |
  * |---------+------+------+-------+-------+------+-------------.  ,-------------+------+------+-------+------+------+---------|
- * | GO_LWSP |  NO  |  NO  | MUTE  |  NO   |LAUNCH|  NO  |  NO  |  |  NO  |  NO  |  NO  |  NO  |  NO   |  NO  |  NO  | GO_RWSP |
+ * | GO_LWSP | TL_B |  NO  | MUTE  |  NO   |LAUNCH|  NO  |  NO  |  |  NO  |  NO  |  NO  |  NO  |  NO   |  NO  | TL_T | GO_RWSP |
  * `-----------------------+-------+-------+------+------+------|  |------+------+------+------+-------+-----------------------'
  *                         |   NO  |(MEDIA)|  NO  |  NO  | ---- |  |  NO  |RGB_T | LOCK |SLEEP |PWR_OFF|
  *                         |       |       |      |      |      |  |      |      |      |      |       |
  *                          ------------------------------------    -----------------------------------
 */
     [_MEDIA] = LAYOUT(
-     WDW_MLS ,KC_NO   ,KC_NO    ,KC_VOLU ,KC_NO   ,KC_MPLY                   ,                    RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI,   KC_NO, WDW_MRS,
-     WDW_MLW ,KC_NO   ,KC_MPRV  ,KC_VOLD ,KC_MNXT ,KC_MSTP                   ,                   RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD,   KC_NO, WDW_MRW,
-     GO_LWSP ,KC_NO   ,KC_NO    ,KC_MUTE ,KC_NO   ,KC_MSEL ,KC_NO   ,KC_NO   ,   KC_NO,    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, GO_RWSP,
+     WDW_MLS ,TL_MM   ,KC_NO    ,KC_VOLU ,KC_NO   ,KC_MPLY                   ,                    RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI,   TL_MX, WDW_MRS,
+     WDW_MLW ,TL_L    ,KC_MPRV  ,KC_VOLD ,KC_MNXT ,KC_MSTP                   ,                   RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD,    TL_R, WDW_MRW,
+     GO_LWSP ,TL_B    ,KC_NO    ,KC_MUTE ,KC_NO   ,KC_MSEL ,KC_NO   ,KC_NO   ,   KC_NO,    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,    TL_T, GO_RWSP,
                                  KC_NO   ,KC_TRNS ,KC_NO   ,KC_NO   ,KC_NO   ,   KC_NO,  RGB_TOG,    LOCK, KC_SLEP,  KC_PWR
     ),
 
