@@ -15,9 +15,7 @@
  */
 #include QMK_KEYBOARD_H
 
-#ifdef WPM_ENABLE
-    #include <stdio.h>
-#endif
+#include "timer.h"
 
 enum layers {
     _QWERTY = 0,
@@ -70,9 +68,6 @@ enum layers {
 
 #define LOCK G(KC_L)
 
-static uint8_t stillStarting = 1;
-static uint16_t key_timer;
-key_timer = timer_read();
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -251,15 +246,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 // /* DELETE THIS LINE TO UNCOMMENT (1/2)
 #ifdef OLED_ENABLE
+
+
+static uint16_t key_timer;
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
      return OLED_ROTATION_180;
 }
 
-#ifdef WPM_ENABLE
-    char wpm_str[10];
-#endif
+void keyboard_post_init_user(void) {
+  // Call the post init code.
+  key_timer = timer_read();
+}
 
 bool oled_task_user(void) {
+
     if (is_keyboard_master()) {
         // QMK Logo and version information
         // clang-format off
@@ -300,10 +300,11 @@ bool oled_task_user(void) {
         oled_write_P(led_usb_state.caps_lock ? PSTR("CAPLCK ") : PSTR("       "), false);
 
     } else {
-        if (isStarting()) {
+        if (timer_elapsed(key_timer) < 10000) {
             oled_write_P(PSTR("\n"), false);
             oled_write_P(PSTR("Good morning, \n"), false);
             oled_write_P(PSTR("Luca!"), false);
+
         } else {
             // clang-format off
             static const char PROGMEM kyria_logo[] = {
@@ -324,15 +325,5 @@ bool oled_task_user(void) {
         }
     }
     return false;
-}
-// within the first 10 seconds is still first start, then it's just normal working operation
-uint8_t isStarting(void) {
-    if (stillStarting && timer_elapsed(key_timer) < 10000) {
-        stillStarting = 1;
-    } else {
-        stillStarting = 0;
-    }
-
-    return stillStarting;
 }
 #endif
