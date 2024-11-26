@@ -16,14 +16,6 @@
 
 #pragma once
 
-#ifdef RGBLIGHT_ENABLE
-#    define RGBLIGHT_ANIMATIONS
-#    define RGBLIGHT_HUE_STEP  8
-#    define RGBLIGHT_SAT_STEP  8
-#    define RGBLIGHT_VAL_STEP  8
-#    define RGBLIGHT_LIMIT_VAL 150
-#endif
-
 
 // I don't want to tap a lot to fix a layer
 #define TAPPING_TOGGLE 2
@@ -34,20 +26,4 @@
 // use the following two to tune the way the tap or hold are handled
 // #define PERMISSIVE_HOLD
 // #define HOLD_ON_OTHER_KEY_PRESS
-#define TAPPING_TERM 110
-
-// RGB matrix
-#define RGB_DISABLE_WHEN_USB_SUSPENDED // turn off effects when suspended
-
-#define RGB_MATRIX_FRAMEBUFFER_EFFECTS
-#define ENABLE_RGB_MATRIX_TYPING_HEATMAP    // How hot is your WPM!
-#define ENABLE_RGB_MATRIX_DIGITAL_RAIN
-
-#define RGB_MATRIX_TYPING_HEATMAP_DECREASE_DELAY_MS 100
-#define RGB_MATRIX_TYPING_HEATMAP_SPREAD 100
-#define RGB_MATRIX_TYPING_HEATMAP_AREA_LIMIT 36
-
-
-// enables the reative matrix
-#define RGB_MATRIX_KEYPRESSES
-#define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE   // Pulses keys hit to hue & value then fades value out
+#define TAPPING_TERM 130
