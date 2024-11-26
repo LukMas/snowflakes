@@ -22,7 +22,6 @@ enum layers {
     _NUMBERs,
     _FUNCTIONs,
     _MEDIA,
-    _MOUSE,
     _NAVI
 };
 
@@ -30,7 +29,6 @@ enum layers {
 #define GO_NUMBs    MO(_NUMBERs)
 #define GO_FUNCs    MO(_FUNCTIONs)
 #define GO_MEDIA    TT(_MEDIA)
-#define GO_MOUSE    TT(_MOUSE)
 #define NAVI_TAB    LT(_NAVI, KC_TAB)
 
 // left and right control when held, left and right parenthesis when tap
@@ -81,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *|---------+------+------+-------+------+------+-------------.  ,-------------+------+------+-------+------+------+---------|
  *| Shift { |   Z  |   X  |   C   |   V  |   B  | = +  | App  |  | Ins  | - _  |   N  |   M  |  , <  | . >  | / ?  | Shift } |
  *`-----------------------+-------+------+------+------+------|  |------+------+------+------+-------+-----------------------'
- *                        | MEDIA | LAlt | FUNC | Space| DEL  |  | Bcksp| Enter| NUMB | RAlt | MOUSE |
+ *                        | MEDIA | LAlt | FUNC | Space| DEL  |  | Bcksp| Enter| NUMB | RAlt |  NO   |
  *                        |       |  [   |      |      |      |  |      |      |      |  ]   |       |
  *                         -----------------------------------    -----------------------------------
  */
@@ -89,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      NAVI_TAB ,KC_Q    ,KC_W     ,KC_E     ,KC_R     ,KC_T                       ,                        KC_Y,     KC_U,     KC_I,    KC_O,    KC_P,  ESC_GUI,
      LCL_LPRT, KC_A    ,KC_S     ,KC_D     ,KC_F     ,KC_G                       ,                        KC_H,     KC_J,     KC_K,    KC_L, KC_SCLN, RCL_RPRT,
      LSFT_LCB ,KC_Z    ,KC_X     ,KC_C     ,KC_V     ,KC_B     ,KC_EQL ,KC_APP   ,   KC_INS,  KC_MINS,    KC_N,     KC_M,  KC_COMM,  KC_DOT, KC_SLSH, RSFT_RCB,
-                                  GO_MEDIA ,LALT_LBK ,GO_FUNCs ,KC_SPC ,KC_DEL   ,   KC_BSPC,  KC_ENT,GO_NUMBs, RALT_RBK, GO_MOUSE
+                                  GO_MEDIA ,LALT_LBK ,GO_FUNCs ,KC_SPC ,KC_DEL   ,   KC_BSPC,  KC_ENT,GO_NUMBs, RALT_RBK,    KC_NO
     ),
 
 /*
@@ -149,31 +147,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                          ------------------------------------    -----------------------------------
 */
     [_MEDIA] = LAYOUT(
-     LOCK  ,KC_NO   ,KC_NO    ,KC_VOLU ,KC_NO   ,KC_MPLY                   ,                    RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI,   KC_NO, KC_SLEP,
-     KC_NO ,KC_NO   ,KC_MPRV  ,KC_VOLD ,KC_MNXT ,KC_MSTP                   ,                   RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD,   KC_NO,   KC_NO,
-     KC_NO ,KC_NO   ,KC_NO    ,KC_MUTE ,KC_NO   ,KC_MSEL ,KC_NO   ,KC_NO   ,   KC_NO,    KC_NO, RGB_TOG,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+     LOCK  ,KC_NO   ,KC_NO    ,KC_VOLU ,KC_NO   ,KC_MPLY                   ,                      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_SLEP,
+     KC_NO ,KC_NO   ,KC_MPRV  ,KC_VOLD ,KC_MNXT ,KC_MSTP                   ,                      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+     KC_NO ,KC_NO   ,KC_NO    ,KC_MUTE ,KC_NO   ,KC_MSEL ,KC_NO   ,KC_NO   ,   KC_NO,    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
                                KC_TRNS ,KC_NO   ,KC_NO   ,KC_NO   ,KC_NO   ,   KC_NO,    KC_NO,   KC_NO,   KC_NO,  KC_PWR
-    ),
-
-/*
- * Base Layer: _MOUSE
- *
- * ,---------------------------------------------.                              ,----------------------------------------------.
- * |  WHL U  |  NO  |  NO  |  M_U  |  NO  |ACL 1 |                              |  NO  |  NO   | WHL U |  NO  |  NO  |   NO    |
- * |---------+------+------+-------+------+------|                              |------+-------+-------+------+------+---------|
- * |  WHL D  |  NO  | MS_L |  M_D  | M_RG |ACL 2 |                              |  NO  |WHL L  | WHL D |WHL R |  NO  |   NO    |
- * |---------+------+------+-------+------+------+-------------.  ,-------------+------+-------+-------+------+------+---------|
- * |   NO    |  NO  |  NO  |  NO   |  NO  |ACL 3 |  NO  |  NO  |  |  NO  |  NO  |  NO  |  NO   |  NO   |  NO  |  NO  |   NO    |
- * `-----------------------+-------+------+------+------+------|  |------+------+------+-------+-------+-----------------------'
- *                         |   NO  | BTN1 | BTN2 | BTN3 |  NO  |  |  NO  |  NO  |  NO  |   NO  |(MOUSE)|
- *                         |       |      |      |      |      |  |      |      |      |       |       |
- *                          -----------------------------------    ------------------------------------
-*/
-    [_MOUSE] = LAYOUT(
-     KC_WH_U,KC_NO   ,KC_NO   ,KC_MS_U  ,KC_NO    ,KC_ACL0                   ,                      KC_NO,    KC_NO,  KC_WH_U,   KC_NO,   KC_NO,  KC_NO,
-     KC_WH_D,KC_NO   ,KC_MS_L ,KC_MS_D  ,KC_MS_R  ,KC_ACL1                   ,                      KC_NO,  KC_WH_L,  KC_WH_D, KC_WH_R,   KC_NO,  KC_NO,
-     KC_NO  ,KC_NO   ,KC_NO   ,KC_NO    ,KC_NO    ,KC_ACL2 ,KC_NO   ,KC_NO   ,   KC_NO,    KC_NO,   KC_NO,    KC_NO,    KC_NO,   KC_NO,   KC_NO,  KC_NO,
-                               KC_NO    ,KC_BTN1  ,KC_BTN2 ,KC_BTN3 ,KC_NO   ,   KC_NO,    KC_NO,   KC_NO,    KC_NO,  KC_TRNS
     ),
 
 /*
