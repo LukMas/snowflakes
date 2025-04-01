@@ -91,21 +91,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Base Layer: _NUMBERs
  *
  * ,---------------------------------------------.                              ,---------------------------------------------.
- * |   Tab   |CapLok|  {   |   (   | ` ~  |  |   |                              |  &   | ' "  |   )   |   }  |NumLok| Esc     |
+ * |   Tab   |  NO  |  {   |   (   | ` ~  |  |   |                              |  &   | ' "  |   )   |   }  |  NO  | Esc     |
  * |---------+------+------+-------+------+------|                              |------+------+-------+------+------+---------|
  * |   Ctrl  | 1 !  | 2 @  |  3 #  | 4 $  | 5 %  |                              | 6 ^  | 7 &  |  8 *  | 9 (  | 0 )  | Ctrl    |
  * |---------+------+------+-------+------+------+-------------.  ,-------------+------+------+-------+------+------+---------|
- * |  Shift  |  NO  |  Up  |  NO   | Down |  [   |Bcksp |  NO  |  |  NO  |  NO  |  ]   | Left |  NO   |Right |  / ? | Shift   |
+ * |  Shift  |  NO  |  Up  |  NO   | Down |  [   | DEL  | Meh  |  |  NO  |  NO  |  ]   | Left |  NO   |Right |  / ? | Shift   |
+ * |         |      |      |       |      |      |      |Bcksp |  |      |      |      |      |       |      |      |         |
  * `-----------------------+-------+------+------+------+------|  |------+------+------+------+-------+-----------------------'
- *                         | L GUI | LAlt | Alt  |Shift | Meh  |  |  NO  |  NO  |(NUMB)| RAlt | L GUI |
- *                         |       |      |      |      | DEL  |  |      |      |      |      |       |
+ *                         | L GUI | LAlt | Alt  |Shift |CapLok|  |  NO  |  NO  |(NUMB)| RAlt | L GUI |
+ *                         |       |      |      |      |      |  |      |      |      |      |       |
  *                          -----------------------------------    -----------------------------------
 */
     [_NUMBERs] = LAYOUT(
-     KC_TAB   ,KC_CAPS ,KC_LCBR  ,KC_LPRN  ,KC_GRV  ,KC_PIPE                         ,                   KC_AMPR,  KC_QUOT,  KC_RPRN,  KC_RCBR,  KC_NUM,   KC_ESC,
+     KC_TAB   ,KC_NO   ,KC_LCBR  ,KC_LPRN  ,KC_GRV  ,KC_PIPE                         ,                   KC_AMPR,  KC_QUOT,  KC_RPRN,  KC_RCBR,   KC_NO,   KC_ESC,
      KC_LCTL  ,KC_1    ,KC_2     ,KC_3     ,KC_4    ,KC_5                            ,                      KC_6,     KC_7,     KC_8,     KC_9,    KC_0,  KC_RCTL,
-     KC_LSFT  ,KC_NO   ,KC_UP    ,KC_NO    ,KC_DOWN ,KC_LBRC ,KC_BSPC ,KC_NO         ,   KC_NO,   KC_NO, KC_RBRC,  KC_LEFT,    KC_NO, KC_RIGHT, KC_TRNS,  KC_RSFT,
-                                  KC_LGUI  ,KC_LALT ,KC_LALT ,KC_LSFT ,MEH_T(KC_DEL) ,   KC_NO,   KC_NO, KC_TRNS,  KC_RALT,  KC_LGUI
+     KC_LSFT  ,KC_NO   ,KC_UP    ,KC_NO    ,KC_DOWN ,KC_LBRC ,KC_BSPC ,MEH_T(KC_DEL) ,   KC_NO,   KC_NO, KC_RBRC,  KC_LEFT,    KC_NO, KC_RIGHT, KC_TRNS,  KC_RSFT,
+                                  KC_LGUI  ,KC_LALT ,KC_LALT ,KC_LSFT ,KC_CAPS       ,   KC_NO,   KC_NO, KC_TRNS,  KC_RALT,  KC_LGUI
     ),
 
 /*
@@ -116,17 +117,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |---------+------+------+-------+------+------|                              |------+------+-------+------+------+---------|
  * | Ctrl    |  NO  |  F7  |  F8   |  F9  | PgUp |                              | Home |  F1  |  F2   |  F3  |  NO  | Ctrl    |
  * |---------+------+------+-------+------+------+-------------.  ,-------------+------+------+-------+------+------+---------|
- * | Shift   |  NO  |  Up  |  NO   | Down | PgDw |  NO  |  NO  |  |  NO  | DEL  | End  | Left |  NO   |Right |  / ? | Shift   |
+ * | Shift   |  NO  |  Up  |  NO   | Down | PgDw |  NO  |  NO  |  |  Meh | DEL  | End  | Left |  NO   |Right |  / ? | Shift   |
+ * |         |      |      |       |      |      |      |      |  | Bcksp|      |      |      |       |      |      |         |
  * `-----------------------+-------+------+------+------+------|  |------+------+------+------+-------+-----------------------'
- *                         | L GUI | LAlt |(FUNC)|  NO  |  NO  |  | Meh  |Shift |  Alt | RAlt | L GUI |
- *                         |       |  [   |      |      |      |  |Bcksp |      |      |  ]   |       |
+ *                         | L GUI | LAlt |(FUNC)|  NO  |  NO  |  |NumLok|Shift |  Alt | RAlt | L GUI |
+ *                         |       |  [   |      |      |      |  |      |      |      |  ]   |       |
  *                          -----------------------------------    -----------------------------------
 */
     [_FUNCTIONs] = LAYOUT(
      KC_TAB   ,KC_NO   ,KC_F10   ,KC_F11   ,KC_F12  ,KC_NO                     ,                            KC_NO,    KC_F4,    KC_F5,   KC_F6,   KC_NO,   KC_ESC,
      KC_LCTL  ,KC_NO   ,KC_F7    ,KC_F8    ,KC_F9   ,KC_PGUP                   ,                          KC_HOME,    KC_F1,    KC_F2,   KC_F3,   KC_NO,  KC_RCTL,
-     KC_LSFT  ,KC_NO   ,KC_UP    ,KC_NO    ,KC_DOWN ,KC_PGDN ,KC_NO   ,KC_NO   , KC_NO,           KC_DEL,  KC_END,  KC_LEFT,    KC_NO, KC_RGHT, KC_TRNS,  KC_RSFT,
-                                  KC_LGUI  ,KC_LALT ,KC_TRNS ,KC_NO   ,KC_NO   , MEH_T(KC_BSPC), KC_LSFT, KC_LALT,  KC_RALT,  KC_LGUI
+     KC_LSFT  ,KC_NO   ,KC_UP    ,KC_NO    ,KC_DOWN ,KC_PGDN ,KC_NO   ,KC_NO   , MEH_T(KC_BSPC),  KC_DEL,  KC_END,  KC_LEFT,    KC_NO, KC_RGHT, KC_TRNS,  KC_RSFT,
+                                  KC_LGUI  ,KC_LALT ,KC_TRNS ,KC_NO   ,KC_NO   ,         KC_NUM, KC_LSFT, KC_LALT,  KC_RALT,  KC_LGUI
     ),
 
 /*
